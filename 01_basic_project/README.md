@@ -1,6 +1,6 @@
 # Understanding HashiCorp Terraform: The Basic Project
 
-Welcome to the first project of the workshop. It is meant to get you up to speed
+Welcome to the first project of the workshop. It is meant to get you up to speed.
 
 ## Terraform Background
 
@@ -89,9 +89,11 @@ ssh -i [key name] ubuntu@[ip-address]
 
 Once you are done, destroy the resources so you do not incurr any charges!
 
+`terraform destroy`
+
 ## Run down of the code!
 
-So what are we doing
+So what is going in in the files?
 
 ### variables.tf
 
@@ -126,6 +128,16 @@ In this case we are exposing the public ip-address.
 
 - In the final parts, we are generating the SSH key we will be using to access the EC2. Note that this is ONLY ok for testing, not for continuous use...
 
+
+### apache_installation.sh.tpl
+
+Our EC2 will run Ubuntu. Using AWS EC2's "user data" input, we will use the contents of this file to install the Apache2 web server.
+
+Note that all user data files need to start with `#!/bin/bash`.
+
+Also note that ${name} is a template variable Terraform. 
+
+
 # **BEWARE**:
 
 This code some issues which makes it totally inappropriate for production use.
@@ -147,7 +159,6 @@ And then, to delete:
 ```
 aws ec2 delete-key-pair --key-name [KEYNAME]
 rm [KEYNAME].pem
-
 
 ```
 
