@@ -94,68 +94,6 @@ It will download the files associated with the AWS provider and if it is success
 :-) 
 
 
-
-# Understanding HashiCorp Terraform
-
-
-## Terraform Background
-
-HashiCorp Terraform [in its own words](https://www.terraform.io/intro/index.html):
-
-*Terraform is an open-source infrastructure as code software tool that provides a consistent CLI workflow to manage hundreds of cloud services. Terraform codifies cloud APIs into declarative configuration files.*
-
-*Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions.*
-
-*Configuration files describe to Terraform the components needed to run a single application or your entire datacenter. Terraform generates an execution plan describing what it will do to reach the desired state, and then executes it to build the described infrastructure. As the configuration changes, Terraform is able to determine what changed and create incremental execution plans which can be applied.*
-
-Terraform is itself quite "minimal" and is expanded with the help of "providers". There are offical HashiCorp providers for all the major cloud companies (AWS, Azure, GCP, Oracle, Alibaba...) and the major on-prem/private cloud platforms like vSphere/vClouds and OpenStack. Hashicorp also maintains an official Kubernetes provider.
-
-There is also a big community who are contributing their own so called "modules", which are ready-made applications written with a specific provider designed to address common use-cases.
-
-Terraform is written in Go and it is possible to create a provider for literally any thing that accepts API commands. As an example, check out the [*Minecraft Provider*](https://github.com/scottwinkler/terraform-provider-minecraft) written by [Scott Wrinkler](https://www.youtube.com/watch?v=--iS_LH-5ls). 
-
-## Terraform vs Cloud-specific IaC?
-
-Terraform has become the standard for "cloud agnostic" IaC. AWS, as an example, has their own one called Amazon CloudFormation. While there are some advantages to using the cloud provider's own tool, particularly when it comes to managing the *state* of an orchestration, Terraform has its own list of advantages:
-- It is cloud-agnostic, allowing you to mix and match different providers while using the same language syntax (HCL). 
-- Cloud providers like AWS have a decentralized structure, where a team releases a service and its APIs to the public first, before the CloudFormation team are able to extend the IaC. Due to the open source community around Terraform, it is often able to make the new services available in Terraform faster than the cloud themselves. 
-
-## Terraform Project Structure
-
-A basic project can be divided in the following way:
-
-- main.tf // call modules, locals and data-sources to create all resources
-- variables.tf // contains declarations of variables used in main.tf
-- outputs.tf // contains outputs from the resources created in main.tf
-
-Terraform evaluates ALL of the .tf files in a directory, so lines of code can be moved around. Instead of main.tf, you might have one s3.tf file for all of your AWS S3 buckets, policies, etc; and so on.
-
-If your project comes very large you can abstract all the contents of a directory as a "module" and call on it from a root-directory. Then you can use your variables and outputs to insert and extract stateful information between modules.
-
-Variables can be declared empty and be set when you run `terraform apply` (through a prompt), or they can be declared with a "default value". You can also specify certain conditions on them, like type. 
-
-If you need to specifiy a LOT of variables, it can be convenient to use a variable definitions file, explicitly named terraform.tfvars or terraform.tfvars.json.
-
-## Step 2.1: Deploying with Terraform
-
-Navigate to the basic_project directory: 
-
-`cd basic_project`
-
-Initialize the Terraform project:
-
-`terraform init`
-
-Deploy the Terraform resources:
-
-`terraform apply`
-
-It will provide you with the deployment plan, inform you what resources will be created and such and then ask you to confirm. 
+Move on to the underlying directories.
 
 
-## Understanding State
-
-
-
-
-# Understanding Elasticsearch
