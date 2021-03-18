@@ -1,1 +1,1 @@
-curl -H "Content-type: application/json" -XPOST "{INSERTDOMAINHERE}/_bulk?pretty" --data-binary "@sample_movies.json"
+curl -H "Content-type: application/json" -XPOST "{INSERTDOMAINHERE}/_bulk?pretty" --data-binary "@data/sample_movies.json"
