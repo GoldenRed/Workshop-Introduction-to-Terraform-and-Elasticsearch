@@ -11,3 +11,6 @@ Run `curl -H "Content-type: application/json" -XPOST "[insert domain endpoint ur
 
 ES has an api endpoint you can use to do bulk import of data into, and we are using it here to upload the sample_movies.json data.
 
+# Queries!
+
+For this you should use an API client like Postman or Insomnia, to make things easier.
